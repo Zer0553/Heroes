@@ -56,7 +56,7 @@ class Game:
                         if self.pole[coords_x][coords_y] == '6':
                             kamen += 1
             curcle += 1
-            if curcle > 1000000:
+            if curcle > 100000:
                 break
 
         for i in range(len(self.pole)):
@@ -83,23 +83,36 @@ class Game:
         self.button_image_exit = PhotoImage(file='Data/exit.png')
         self.screen_width = int(self.windowgame.winfo_screenwidth())
         self.screen_height = int(self.windowgame.winfo_screenheight())
-        self.ground_image = ImageTk.PhotoImage(Image.open('Data/grass.png').resize((220, 220)))
-        self.water_image = ImageTk.PhotoImage(Image.open('Data/water.png').resize((220, 220)))
-        self.castle_image = ImageTk.PhotoImage(Image.open('Data/castle.png').resize((220, 220)))
-        self.hero_image = ImageTk.PhotoImage(Image.open('Data/hero.png').resize((220, 220)))
-        self.les_image = ImageTk.PhotoImage(Image.open('Data/les.png').resize((220, 220)))
-        self.kamen_image = ImageTk.PhotoImage(Image.open('Data/kamen.png').resize((220, 220)))
-        self.enemy_hero_image = ImageTk.PhotoImage(Image.open('Data/enemy_hero.png').resize((220, 220)))
-        self.enemy_castle_image = ImageTk.PhotoImage(Image.open('Data/enemy_castle.png').resize((220, 220)))
-        self.les_igroka_image = ImageTk.PhotoImage(Image.open('Data/les_igroka.png').resize((220, 220)))
-        self.kamen_igroka_image = ImageTk.PhotoImage(Image.open('Data/kamen_igroka.png').resize((220, 220)))
-        self.les_enemy_image = ImageTk.PhotoImage(Image.open('Data/les_enemy.png').resize((220, 220)))
-        self.kamen_enemy_image = ImageTk.PhotoImage(Image.open('Data/kamen_enemy.png').resize((220, 220)))
-        self.enemy_image = ImageTk.PhotoImage(Image.open('Data/enemy.png').resize((220, 220)))
+        self.ground_image = ImageTk.PhotoImage(Image.open('Data/grass.png').resize((int(self.screen_width / 12),
+                                                                                    int(self.screen_height / 8))))
+        self.water_image = ImageTk.PhotoImage(Image.open('Data/water.png').resize((int(self.screen_width / 12),
+                                                                                   int(self.screen_height / 8))))
+        self.castle_image = ImageTk.PhotoImage(Image.open('Data/castle.png').resize((int(self.screen_width / 12),
+                                                                                     int(self.screen_height / 8))))
+        self.hero_image = ImageTk.PhotoImage(Image.open('Data/hero.png').resize((int(self.screen_width / 12),
+                                                                                 int(self.screen_height / 8))))
+        self.les_image = ImageTk.PhotoImage(Image.open('Data/les.png').resize((int(self.screen_width / 12),
+                                                                               int(self.screen_height / 8))))
+        self.kamen_image = ImageTk.PhotoImage(Image.open('Data/kamen.png').resize((int(self.screen_width / 12),
+                                                                                   int(self.screen_height / 8))))
+        self.enemy_hero_image = ImageTk.PhotoImage(Image.open('Data/enemy_hero.png').resize(
+            (int(self.screen_width / 12), int(self.screen_height / 8))))
+        self.enemy_castle_image = ImageTk.PhotoImage(Image.open('Data/enemy_castle.png').resize(
+            (int(self.screen_width / 12), int(self.screen_height / 8))))
+        self.les_igroka_image = ImageTk.PhotoImage(Image.open('Data/les_igroka.png').resize(
+            (int(self.screen_width / 12), int(self.screen_height / 8))))
+        self.kamen_igroka_image = ImageTk.PhotoImage(Image.open('Data/kamen_igroka.png').resize(
+            (int(self.screen_width / 12), int(self.screen_height / 8))))
+        self.les_enemy_image = ImageTk.PhotoImage(Image.open('Data/les_enemy.png').resize(
+            (int(self.screen_width / 12), int(self.screen_height / 8))))
+        self.kamen_enemy_image = ImageTk.PhotoImage(Image.open('Data/kamen_enemy.png').resize(
+            (int(self.screen_width / 12), int(self.screen_height / 8))))
+        self.enemy_image = ImageTk.PhotoImage(Image.open('Data/enemy.png').resize((int(self.screen_width / 12),
+                                                                                   int(self.screen_height / 8))))
         self.empty_image = ImageTk.PhotoImage(
             Image.open('Data/empty.png').resize((int(self.screen_width), int(self.screen_height / 8) * 2)))
         self.button_caslte_create = ImageTk.PhotoImage(Image.open('Data/caslte_create.png'))
-        self.log = Text(self.windowgame, width=int(self.screen_width / 14) - 130,
+        self.log = Text(self.windowgame, width=int((self.screen_width / 14) / 4),
                         height=int(self.screen_height - self.screen_height / 8), wrap="word")
         self.log.insert(END, 'Добро пожаловать в "Герои"!\n'
                              'Чтобы сделать ход нажмите на поле, максимальная длинна хода - 3 клетки\n'
@@ -114,10 +127,12 @@ class Game:
         self.txt_kamen = Label(self.windowgame, text='Камень:' + str(self.kamen_igroka), borderwidth=20, font=("Arial", 20))
         self.button_build = Button(self.windowgame, image=self.button_caslte_create, command=self.caslte_create)
         exit_button = Button(self.windowgame, image=self.button_image_exit, command=sys.exit)
-        self.txt_drova.place(x=self.screen_width - 200, y=self.screen_height - int(self.screen_height / 8) * 2 + 20)
-        self.txt_kamen.place(x=self.screen_width - 200, y=self.screen_height - int(self.screen_height / 8) * 2 + 120)
-        self.button_build.place(x=self.screen_width - 200, y=self.screen_height - int(self.screen_height / 8) * 2 + 220)
-        exit_button.place(x=self.screen_width - 200, y=self.screen_height - int(self.screen_height / 8) * 2 + 320)
+        int(self.screen_width / 12),
+        int(self.screen_height / 8)
+        self.txt_drova.place(x=int(self.screen_width / 12), y=self.screen_height - int(self.screen_height / 8) * 2)
+        self.txt_kamen.place(x=int(self.screen_width / 5), y=self.screen_height - int(self.screen_height / 8) * 2)
+        self.button_build.place(x=int(self.screen_width / 12), y=self.screen_height - int(self.screen_height / 8))
+        exit_button.place(x=self.screen_width - 200, y=self.screen_height - int(self.screen_height / 8) * 2 )
         ui_background.place(x=0, y=self.screen_height - int(self.screen_height / 8) * 2)
         self.log.place(x=int(self.screen_width - (self.screen_width / 12) * 2) + 20, y=0)
         self.focus_pole()
@@ -178,7 +193,16 @@ class Game:
                 self.focus_pole()
             except IndexError:
                 self.pole[row + self.offset[0]][colomn + self.offset[1]] = '5.1'
-                self.pole[row + self.offset[0] - 1][colomn + self.offset[1]] = '4'
+                if self.pole[row + self.offset[0] - 1][colomn + self.offset[1]] != '0':
+                    for offset in [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]]:
+                        try:
+                            if self.pole[row + self.offset[0] + offset[0]][colomn + self.offset[1] + offset[1]] == '0':
+                                self.pole[row + self.offset[0] + offset[0]][colomn + self.offset[1] + offset[1]] = '4'
+                                break
+                        except IndexError:
+                            continue
+                else:
+                    self.pole[row + self.offset[0] - 1][colomn + self.offset[1]] = '4'
                 self.focus_pole()
             self.resources()
             self.log.insert(END, 'Вы заняли Лесопилку! 1 ваш юнит остался в ней\n')
@@ -234,7 +258,16 @@ class Game:
                 self.focus_pole()
             except IndexError:
                 self.pole[row + self.offset[0]][colomn + self.offset[1]] = '6.1'
-                self.pole[row + self.offset[0] - 1][colomn + self.offset[1]] = '4'
+                if self.pole[row + self.offset[0] - 1][colomn + self.offset[1]] != '0':
+                    for offset in [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]]:
+                        try:
+                            if self.pole[row + self.offset[0] + offset[0]][colomn + self.offset[1] + offset[1]] == '0':
+                                self.pole[row + self.offset[0] + offset[0]][colomn + self.offset[1] + offset[1]] = '4'
+                                break
+                        except IndexError:
+                            continue
+                else:
+                    self.pole[row + self.offset[0] - 1][colomn + self.offset[1]] = '4'
                 self.focus_pole()
             self.resources()
             self.log.insert(END, 'Вы заняли Каменоломню! 1 ваш юнит остался в ней\n')
@@ -718,7 +751,6 @@ class Game:
 
     def fight(self, enemies=[]):
         self.log.delete('1.0', END)
-        self.button_build.destroy()
         for i in self.buttons:
             for j in i:
                 j.grid_remove()
@@ -835,6 +867,7 @@ class Game:
             self.choosen_pawn = [0]
             self.log.delete('1.0', END)
             self.log.insert(END, 'Бой окончен! Вы победили!\n')
+            self.button_build.place(x=int(self.screen_width / 12), y=self.screen_height - int(self.screen_height / 8))
             self.focus_pole()
             self.log.place(x=int(self.screen_width - (self.screen_width / 12) * 2) + 20, y=0)
             return
@@ -889,6 +922,8 @@ class Game:
                             self.log.delete('1.0', END)
                             self.squad = []
                             self.log.insert(END, 'Бой окончен! Вы проиграли!!\n')
+                            self.button_build.place(x=int(self.screen_width / 12),
+                                                    y=self.screen_height - int(self.screen_height / 8))
                             self.focus_pole()
                             self.log.place(x=int(self.screen_width - (self.screen_width / 12) * 2) + 20, y=0)
                             return
@@ -1071,6 +1106,9 @@ class Game:
 
     def caslte_create(self):
         count_castles = 0
+        if self.pole_fight != []:
+            self.log.insert(END, 'Вы не можете построить замок пока находитесь в бою!\n')
+            return
         for i in range(len(self.pole)):
             for j in range(len(self.pole[i])):
                 if self.pole[i][j] == '3':
